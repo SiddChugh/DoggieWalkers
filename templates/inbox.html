@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+    <h1>Inbox</h1>
+  </div>
+    <h4>Note: All messages you have received appear here.</h4>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+          <th>Sender's Email</th>
+          <th>Message</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+        {% for message in allMessages %}
+        <tr>
+            <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" >{{message.sender}}</a></th>
+            <th>{{message.message}}</th>
+            <th>{{message.dateTime}}</th>
+            <th><a href="/deleteMessage/{{message.id}}/" class="btn btn-danger">Delete</a></th>
+        </tr>
+        {% endfor %}
+    </table><hr>
+{% endblock %}

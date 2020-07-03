@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+  <h1>{{ title }}</h1>
+</div>
+  <h5>Please Note: The dog's age must be entered in months (integer only).</h5>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="">
+    <div class="form-group">
+      {{render_field(form.name, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.age, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.breed, class_="form-control")}}
+    </div>
+    <p><input class="btn btn-success" type="submit" value="Submit"> <a class="btn btn-primary" href ="/dashboard">Cancel</a></p>
+  </form>
+{% endblock %}

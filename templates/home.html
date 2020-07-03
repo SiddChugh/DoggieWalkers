@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="intro-text">
+    <h1>Welcome to Doggie Walk!</h1>
+    <p> We are here to help.</p>
+    <h4>Register for free or login if you already have an account</h5>
+    {% if session.logged_in == NULL %}
+      <a href="/register" class="btn btn-primary btn-lg">Register</a>
+      <a href="/login" class="btn btn-success btn-lg">Login</a>
+    {% endif %}
+</div>
+<div class="first-parallax"></div>
+
+<div class="second-text">
+     <p align="left">Do you want be become an active member in the local dog community? If so, you can get going in 5 easy steps!</p> <hr>
+    <p align="center">Here is how it works! </p>
+</div>
+
+<div class="second-parallax"></div>
+
+<div class="step-text">
+     <p align="center">
+          Step 1: Sign up with your email address.
+      </p>
+</div>
+
+<div class="third-parallax"></div>
+
+<div class="step-text">
+     <p align="center">
+         2: Create your personal profile and add your dogs profile if you have one.</p>
+</div>
+
+<div class="fourth-parallax"></div>
+
+<div class="step-text">
+     <p align="center">
+          Step 3: Find a match with each other, find people to help walk your dog or help walk other people's dogs!</p>
+</div>
+
+<div class="fifth-parallax"></div>
+
+<div class="step-text">
+     <p align="center">
+           Step 4: Message and stay up to date with each other!</p> 
+</div>
+
+<div class="sixth-parallax"></div>
+
+<div class="step-text">
+     <p align="center">
+           Step 5: Enjoy!</p>
+</div>
+{% endblock %}

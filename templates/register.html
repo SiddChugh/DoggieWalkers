@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+  <h1>User Registration</h1>
+</div>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="">
+    <div class="form-group">
+      {{render_field(form.first_name, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.last_name, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.email, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.date_of_birth, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.city, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.willing_to_walk, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.password, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.confirm_pass, class_="form-control")}}
+    </div>
+    <p><input type="submit" class="btn btn-success" value="Create Account"></p>
+  </form>
+{% endblock %}

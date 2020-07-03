@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+    <h1>All Dog Owners</h1>
+  </div>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Breed </th>
+          <th>Contact owner</th>
+          <th>Location</th>
+        </tr>
+        {% for item in datas %}
+          <tr>
+            <th><a href="/dogs/{{item[4]}}/" class="btn btn-primary"> {{item[1]}} </a></th>
+            <th> {{item[2]}}</th>
+            <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{item[0]}} </a></th>
+            <th>{{item[5]}}</th>
+          </tr>
+        {% endfor %}
+    </table><hr>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>All Dogs</h1><a class="btn btn-success" href="/dogs/add/">Add a Dog</a>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Breed</th>
+          <th>Owner</th>
+        </tr>
+        {% for dog in all_dogs %}
+          <tr>
+            <th><a href ="/dogs/{{dog.id}}/">{{dog.name}}</a></th>
+            <th> {{dog.age}}</th>
+            <th> {{dog.breed}}</th>
+            <th> {{dog.owner}}</th>
+          </tr>
+        {% endfor %}
+    </table><hr>
+{% endblock %}

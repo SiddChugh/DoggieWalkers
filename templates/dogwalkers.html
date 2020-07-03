@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+    <h1>All Dog Walkers</h1>
+  </div>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+          <th>User</th>
+          <th>mail</th>
+          <th>Location</th>
+        </tr>
+        {% for item in datas %}
+          <tr>
+            <th><a href="/user_profile/{{item[3]}}"  class="btn btn-primary"> {{item[1]}} {{item[2]}} </a></th>
+            <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{item[0]}} </a></th>
+            <th>{{item[4]}}</th>
+          </tr>
+        {% endfor %}
+    </table><hr>
+{% endblock %}

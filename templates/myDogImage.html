@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+<h1>Dog Image</h1>
+</div>
+<img class="img-responsive" src="{{image_path}}"><hr>
+
+{% if session.email == dog_info.owner %}
+<form action="{{url_for('my_dog_image_delete', file=image_name)}}" method="post">
+    <input type="submit" name="deleteImage" value="Delete" class="btn btn-danger">
+</form><hr>
+{% endif %}
+
+{% endblock %}

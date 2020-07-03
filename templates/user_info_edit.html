@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class=="heading">
+    <h1>Edit User Information</h1><hr>
+  </div>
+    {% from "includes/_formhelpers.html" import render_field %}
+    <form method="POST" action="">
+        <div class="form-group">
+          {{render_field(form.first_name, class_="form-control")}}
+        </div>
+        <div class="form-group">
+          {{render_field(form.last_name, class_="form-control")}}
+        </div>
+        <div class="form-group">
+          {{render_field(form.email, class_="form-control", readonly='readonly')}}
+        </div>
+        <div class="form-group">
+          {{render_field(form.date_of_birth, class_="form-control")}}
+        </div>
+        <div class="form-group">
+          {{render_field(form.city, class_="form-control")}}
+        </div>
+        <div class="form-group">
+          {{render_field(form.willing_to_walk, class_="form-control")}}
+        </div>
+      <p><input class="btn btn-success" type="submit" value="Update Information"></p>
+    </form>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% if firstName != None%}
+<div class="heading">
+<h3>Users results </h3>
+</div>
+   <table class="table table-striped">
+       <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>City</th>
+       </tr>
+       {% for user in firstName %}
+       <tr>
+          <th><a href="/user_profile/{{user.id}}"  class="btn btn-primary"> {{user.first_name}} {{user.last_name}} </a></th>
+           <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{user.email}}</th>
+           <th>{{user.city}}</th>
+
+       </tr>
+       {% endfor %}
+   </table><hr>
+{% endif %}
+
+{%if email != None%}
+<table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>email</th>
+      <th>city</th>
+    </tr>
+    {% for user in email %}
+    <tr>
+        <th><a href="/user_profile/{{user.id}}"  class="btn btn-primary"> {{user.first_name}} {{user.last_name}} </a></th>
+        <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{user.email}}</th>
+          <th>{{user.city}}</th>
+
+    </tr>
+    {% endfor %}
+</table><hr>
+{% endif %}
+
+{%if dogByBreed != None%}
+<div class="heading">
+<h3> List of available dogs</h3>
+</div>
+<table class="table table-striped">
+    <tr>
+      <th>Dog Name</th>
+      <th>Dog Breed</th>
+      <th>Dog Age</th>
+      <th>Dog Owner</th>
+    </tr>
+    {% for dog in dogByBreed %}
+    <tr>
+      <th><a href="/dogs/{{dog.id}}/" class="btn btn-primary"> {{dog.name}} </a></th>
+        <th>{{dog.breed}}</th>
+        <th>{{dog.age}}</th>
+        <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{dog.owner}}</th>
+    </tr>
+    {% endfor %}
+</table><hr>
+{% endif %}
+
+{%if eventByCity != None %}
+<div class="heading">
+<h2> Events happening in {{eventByCity[0].city}}</h2>
+</div>
+<table class="table table-striped">
+    <tr>
+      <th>Event Title </th>
+      <th>Event Author</th>
+      <th>Event City</th>
+    </tr>
+    {% for event in eventByCity %}
+    <tr>
+        <th><a href="/events/{{event.id}}/" class="btn btn-primary">{{event.title}}</th>
+          <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{event.author}}</th>
+        <th>{{event.city}}</th>
+    </tr>
+    {% endfor %}
+</table><hr>
+{% endif %}
+
+{%if userByCity != None %}
+<div class="heading">
+<h2> Users available in {{userByCity[0].city}}</h2>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>City</th>
+  </tr>
+  {% for user in userByCity %}
+  <tr>
+     <th><a href="/user_profile/{{user.id}}"  class="btn btn-primary"> {{user.first_name}} {{user.last_name}} </a></th>
+      <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{user.email}}</th>
+      <th>{{user.city}}</th>
+  </tr>
+    {% endfor %}
+</table><hr>
+{% endif %}
+
+{%if lastName != None %}
+<div class="heading">
+<h3>Users results </h3>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th>Name (search by last name)</th>
+    <th>email</th>
+    <th>city</th>
+  </tr>
+    {% for user in lastName %}
+    <tr>
+        <th><a href="/user_profile/{{user.id}}"  class="btn btn-primary"> {{user.first_name}} {{user.last_name}} </a></th>
+        <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{user.email}}</th>
+        <th>{{user.city}}</th>
+    </tr>
+    {% endfor %}
+</table><hr>
+{% endif %}
+
+
+{%if eventByName != None %}
+<div class="heading">
+<h3>Events results </h3>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th>Event Title (event by name)</th>
+    <th>Event Author</th>
+    <th>Event City</th>
+  </tr>
+  {% for event in eventByName %}
+  <tr>
+      <th><a href="/events/{{event.id}}/" class="btn btn-primary">{{event.title}}</th>
+        <th><a target="_blank" rel="noopener noreferrer" href="/sendMessage" > {{event.author}}</th>
+      <th>{{event.city}}</th>
+  </tr>
+    {% endfor %}
+</table><hr>
+{% endif %}
+
+{% endblock %}

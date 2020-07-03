@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+  <h1>Dashboard
+  </div> 
+  <div class="about"><small>Welcome {{session.first_name}},</small></div></h1>
+  <!-- This button should be moved to the profile html page -->
+ 
+  <a class="btn btn-success" href="/events/new">Add an Event</a><hr>
+  <table class="table table-striped">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+      </tr>
+      {% for event in events %}
+        <tr>
+          <th><a href ="/events/{{event.id}}">{{event.title}}</a></th>
+          <th> {{event.author}}</th>
+          <th> {{event.createdAt}}</th>
+          <th> {{event.updatedAt}}</th>
+        </tr>
+      {% endfor %}
+  </table>
+{% endblock %}

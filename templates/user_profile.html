@@ -1,0 +1,163 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	{% if session.user_id == user_info.id %}
+		<div class="heading">
+			<h1>
+			{{user_info.first_name}}'s Profile
+			{% if stars != 0 %}
+                {% for i in range(stars) %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-on.png') }}" width="16" height="16" />
+                {% endfor %}
+                {% if half %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-half.png') }}" width="16" height="16" />
+                {% else %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-off.png') }}" width="16" height="16" />
+                {% endif %}
+                {% for i in range(5 - 1 - stars) %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-off.png') }}" width="16" height="16" />
+                {% endfor %}
+            {% else %}
+                 <i id ="rating">No ratings</i>
+            {% endif %}
+        </div>
+		</h1><hr>
+		<div class="row">
+        	<div class="col-lg-12">
+				{% for image_name in image_names %}
+		         <div class="col-lg-3 col-md-3 col-xs-6 thumb">
+		         	<div id="images">
+		         		<a href="{{url_for('my_image', file=image_name)}}">
+			            <img class="img-responsive" src="/static/images/user/{{user_id}}/general/{{image_name}}">
+			        	</a>
+			        </div>
+		        </div>
+		        {% endfor %}
+		    </div>
+	    </div>
+	    <p></p>
+	    	<a class="btn btn-success" href="/uploadImage">Upload Image(s)</a>
+	    	<a class="btn btn-success" href="/user_profile/{{ session.user_id }}/edit">Edit Profile Information</a>
+        <hr>
+
+		<div class="row">
+
+			<div class="col-sm-6">
+				<div id="profileInfo">
+					<h2>Dog Information</h2>
+					<h6>You can add, edit and view your dog's information here.</h6><hr>
+					<ul class="list-group">
+						{% for dog in dogs %}
+							<li class="list-group-item"><a href="/dogs/{{dog.id}}/">{{dog.name}}</a></li>
+						{% endfor %}
+					</ul>
+					<a class="btn btn-success" href="/dogs/add/">Add a Dog</a>
+				</div>
+			</div>
+		</div><hr>
+		<div class="row">
+			<div class="col-sm-6">
+					<div id="profileInfo">
+					<h2>Event Information</h2>
+					<h6>You can add, edit and view your event information here.</h6><hr>
+					<ul class="list-group">
+					{% for event in events %}
+						<li class="list-group-item"><a href="/events/{{event.id}}/">{{event.title}}</a></li>
+					{% endfor %}
+					</ul>
+					<a class="btn btn-success" href="/events/new">Add an Event</a>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div id="profileInfo">
+					<h2>Reviews</h2>
+					<h6>You can see how your dog walking has been reviewed here.</h6>
+					<hr>
+					<a class="btn btn-success" href="/users/{{session.user_id}}/reviews/">See your reviews</a>
+				</div>
+			</div>
+		</div><hr>
+	{% else %}
+	<div class="heading">
+		<h1>
+			{{user_info.first_name}}'s Profile
+            {% if stars != 0 %}
+                {% for i in range(stars) %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-on.png') }}" width="16" height="16" />
+                {% endfor %}
+                {% if half %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-half.png') }}" width="16" height="16" />
+                {% else %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-off.png') }}" width="16" height="16" />
+                {% endif %}
+                {% for i in range(5 - 1 - stars) %}
+                    <img class="img-circle" src="{{ url_for('static', filename='images/star-off.png') }}" width="16" height="16" />
+                {% endfor %}
+            {% else %}
+                <i id ="rating">No ratings</i>
+            {% endif %}
+        </div>
+		</h1><hr>
+		<div class="row">
+        	<div class="col-lg-12">
+				{% for image_name in image_names %}
+		         <div class="col-lg-3 col-md-3 col-xs-6 thumb">
+		         	<div id="images">
+			         		<a href="{{url_for('my_image', file=image_name)}}">
+			            <img class="img-responsive" src="/static/images/user/{{user_id}}/general/{{image_name}}">
+			        	</a>
+			        </div>
+		        </div>
+		        {% endfor %}
+		    </div>
+		    <p></p>
+		    <a target="_blank" rel="noopener noreferrer" href="{{url_for('send_message')}}" class="btn btn-success"> Contact User </a>
+	    </div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div id="otherProfileInfo">
+					<h2>User Information</h2>
+					<img src="https://static-maps.yandex.ru/1.x/?lang=en_US&ll={{user_info.longitude}},{{user_info.latitude}}&size=400,300&z=10&l=map&pt={{user_info.longitude}},{{user_info.latitude}},round"/>
+					<h4> {{user_info.first_name}} {{user_info.last_name}} lives in {{user_info.city}}</h4>
+					<h4>Willing To Walk Dogs: {{user_info.willing_to_walk}}</h4>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<h2>Dog Information</h2>
+				<hr>
+				<ul class="list-group">
+					{% if dogs != [] %}
+						{% for dog in dogs %}
+							<li class="list-group-item"><a href="/dogs/{{dog.id}}/">{{dog.name}}</a></li>
+						{% endfor %}
+					{% else %}
+		                 <i id ="rating">{{user_info.first_name}} {{user_info.last_name}} does not have any dogs</i>
+		            {% endif %}
+				</ul>
+			</div>
+		</div><hr>
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Event Information</h2>
+				<hr>
+				<ul class="list-group">
+					{% if dogs != [] %}
+						{% for event in events %}
+							<li class="list-group-item"><a href="/events/{{event.id}}/">{{event.title}}</a></li>
+						{% endfor %}
+					{% else %}
+		                 <i id ="rating">{{user_info.first_name}} {{user_info.last_name}} has not created any events</i>
+		            {% endif %}	
+				</ul>
+			</div>
+
+			<div class="col-sm-6">
+				<h2>Reviews</h2>
+				<hr>
+				<a class="btn btn-success" href="/users/{{user_info.id}}/reviews/">See reviews</a>
+			</div>
+		</div>
+		<hr>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <script src="{{ url_for('static', filename='javascript/add_review.js') }}"></script>
+  <div class="heading">
+  <h1>Write a Review for {{name}}</h1>
+</div>
+  <h4>Note: Please only add text characters in the body text field. Media items are not supported at this time.</h4>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="">
+	<div class="form-group">
+      {{render_field(form.rating, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.title, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.body, class_="form-control", id="ckeditor")}}
+    </div>
+    <p><input class="btn btn-primary" type="submit" value="Submit"> <a id=cancelButton class="btn btn-primary" href ="/dashboard">Cancel</a></p>
+
+  </form>
+{% endblock %}

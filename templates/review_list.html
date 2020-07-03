@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+    <h1>Reviews for {{user.first_name}} {{user.last_name}} ({{user.email}})</h1>
+</div>
+	<table class="table table-striped">
+		  <tr>
+			<th>Rating</th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Created At</th>
+			<th>Updated At</th>
+		  </tr>
+		  {% for review in reviews %}
+			
+			<tr>
+			  <th> {% for i in range(review.rating) %}
+                        <img class="img-circle" src="{{ url_for('static', filename='images/star-on.png') }}" width="16" height="16" />
+					{% endfor %} 
+                    {% for i in range(5 - review.rating) %}
+                        <img class="img-circle" src="{{ url_for('static', filename='images/star-off.png') }}" width="16" height="16" />
+                    {% endfor %}
+              </th>
+			  <th> <a href ="/users/{{user.id}}/reviews/{{review.id}}/">
+				{{review.title}}</a></th>
+			  <th> <a href ="/user_profile/{{review.authorid}}/">{{review.author}}</th>
+			  <th> {{review.createdAt}}</th>
+			  <th> {{review.updatedAt}}</th>
+			</tr>
+			
+		  {% endfor %}
+	  </table>
+	  
+	{% if session.user_id != user.id %}
+		<a class="btn btn-success" href="/users/{{user.id}}/reviews/new">Add a new review</a>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+    <h1>Sent Messages</h1>
+  </div>
+    <h4>Note: The following is a list of all the messages you have sent.</h4>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+          <th>Receiver</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+        {% for message in sentMessages %}
+          <tr>
+            <th> <a target="_blank" rel="noopener noreferrer" href="/sendMessage" >{{message.receiver}}</a></th>
+            <th> {{message.message}}</th>
+            <th> {{message.dateTime}}</th>
+          </tr>
+        {% endfor %}
+    </table><hr>
+{% endblock %}

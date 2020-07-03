@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="heading">
+<h1>Upload User Images</h1>
+</div>
+<h5>Note: You can upload multiple images. Only image files can be uploaded. You can have a maximum of 10 images in your User image gallery.</h5>
+<form method="POST" action="{{ url_for('upload_image') }}" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="inputFile">Image Input</label>
+        <input type="file" name="images" accept="image/*" multiple>
+    </div><hr>
+    <button type="submit" class="btn btn-success">Upload Image(s)</button>
+</form>
+{% endblock %}
